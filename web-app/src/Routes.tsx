@@ -8,7 +8,7 @@ export default function AppRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<DefaultPage />} />
-        <Route path="/myreservations" element={<MyReservations />} />
+        <Route path="/mybooking" element={<MyReservations />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>

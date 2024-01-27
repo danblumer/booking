@@ -8,13 +8,18 @@ export const Container = styled.div`
     align-items: center;
 `;
 
-export const ContentContainer = styled.div`
+export const GlobalContentContainer = styled.div`
+    display: flex;
+    flex: 1;
+    max-width: 1024px;
+    width: 100%;
+`;
+
+export const DefaultPageContentContainer = styled(GlobalContentContainer)`
     display: flex;
     flex: 1;
     flex-direction: column;
     max-width: 1024px;
     width: 100%;
     gap: 15px;
-    margin: 20px 0;
-    padding: 10px;
 `;

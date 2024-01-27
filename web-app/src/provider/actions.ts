@@ -1,4 +1,4 @@
-import { Booking, Hotel, UserInfo } from '../types/Booking';
+import { Booking, Hotel, UserInfo } from '../types/Interfaces';
 
 export enum Actions {
     SET_USER_INFO,
@@ -12,6 +12,6 @@ export type Events =
   | { type: Actions.SET_USER_INFO; payload: UserInfo }
   | { type: Actions.ADD_BOOKING; payload: Booking }
   | { type: Actions.UPDATE_BOOKING; payload: Booking }
-  | { type: Actions.REMOVE_BOOKING; payload: Booking }
+  | { type: Actions.REMOVE_BOOKING; payload: string }
   | { type: Actions.SET_ALL_AVAILABLE_HOTELS; payload: Hotel[] }
-  | { type: Actions.SET_SELECTED_HOTEL; payload: Hotel };
+  | { type: Actions.SET_SELECTED_HOTEL; payload: Hotel | undefined };

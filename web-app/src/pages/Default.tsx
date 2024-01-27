@@ -1,7 +1,12 @@
-import React from "react";
 import Header from "../components/header";
 import SearchBar from "../components/searchBar";
 import { useBookingContext } from "../provider/BookingContextProvider";
+import HotelCard from "../components/hotelCard";
+import { calculateTotalStay } from "../services/hotelServices";
+import { Actions } from "../provider/actions";
+import { Hotel } from "../types/Interfaces";
+import { useNavigate } from "react-router-dom";
+import { Container, DefaultPageContentContainer } from "../components/container/styled";
 /*
 import { styled } from '@mui/material/styles';
 
@@ -10,14 +15,30 @@ const CustomButton = styled(Button)({
 }) as typeof Button;
 */
 
-const DefaultPage: React.FC = () => {
-  const { state } = useBookingContext();
-  console.log('state', state);
+const DefaultPage = () => {
+  const { state, dispatch } = useBookingContext();
+  const { availableHotels } = state;
+  const navigate = useNavigate();
+  const handleSelectHotel = (selectedHotel?: Hotel) => {
+    dispatch({ type: Actions.SET_SELECTED_HOTEL, payload: selectedHotel });
+    navigate('/checkout');
+  };
+  
   return (
-    <>
+    <Container>
       <Header />
-      <SearchBar />
-    </>
+      <DefaultPageContentContainer>
+        <SearchBar />
+        {availableHotels.map((item) => (
+          <HotelCard
+            key={item.id}
+            hotelData={item}
+            totalPrice={calculateTotalStay(item.price, 2)}
+            handleSelectHotel={handleSelectHotel}
+          />
+        ))}
+      </DefaultPageContentContainer>
+    </Container>
   );
 };
 

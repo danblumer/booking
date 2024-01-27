@@ -1,16 +1,46 @@
 [
     {
         "id": 1,
-        "name":"Hotel 1",
-        "rating": 8.8,
-        "country": "Brasil",
-        "rooms":[
-            {
-                "id": 1,
-                "description": "room description",
-                "availableDates": ["2001-10-10","2001-10-11"],
-                "price": 500
-            }
-        ]
+        "amenities": ["abcd", "efg"],
+        "name": "Hotel Name",
+        "country": "USA",
+        "city": "Las vegas",
+        "price": 500.50,
+        "rating": 5,
+        "reviewCount": 5000,
+        "availableDates": ["2001-10-10","2001-10-11"]
+    },
+    {
+        "id": 2,
+        "amenities": ["abcd", "efg"],
+        "name": "Hotel Name two",
+        "country": "USA",
+        "city": "Las vegas",
+        "price": 600,
+        "rating": 5,
+        "reviewCount": 5000,
+        "availableDates": ["2001-10-10","2001-10-11"]
+    },
+    {
+        "id": 3,
+        "amenities": ["abcd", "efg"],
+        "name": "Hotel Name two",
+        "country": "USA",
+        "city": "Las vegas",
+        "price": 600,
+        "rating": 5,
+        "reviewCount": 5000,
+        "availableDates": ["2001-10-10","2001-10-11"]
+    },
+    {
+        "id": 4,
+        "amenities": ["abcd", "efg"],
+        "name": "Hotel Name two",
+        "country": "USA",
+        "city": "Las vegas",
+        "price": 600,
+        "rating": 5,
+        "reviewCount": 5000,
+        "availableDates": ["2001-10-10","2001-10-11"]
     }
 ]

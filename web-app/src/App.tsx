@@ -15,7 +15,7 @@ const themeUITheme = {
   },
   colors: {
     text: "#000",
-    background: "#fff",
+    background: "#fbf8f1",
     primary: "#33e",
   },
 };
