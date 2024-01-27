@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "name":"Hotel 1",
+        "rating": 8.8,
+        "country": "Brasil",
+        "rooms":[
+            {
+                "id": 1,
+                "description": "room description",
+                "availableDates": ["2001-10-10","2001-10-11"],
+                "price": 500
+            }
+        ]
+    }
+]
