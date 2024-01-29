@@ -64,11 +64,9 @@ const Checkout: React.FC = () => {
   const validateForm = async (values: FormValues) => {
     const errors: Partial<FormValues> = {};
 
-    if (dayjs(values.startDate).isBefore(dayjs(values.endDate))) {
-      errors.endDate = "End Date should be greater than start date";
+    if (dayjs(values.startDate).isAfter(dayjs(values.endDate))) {
+      errors.endDate = "End Date must be greater than start date";
     }
-
-    // More custom validation logic for other fields...
 
     return errors;
   };
@@ -88,6 +86,9 @@ const Checkout: React.FC = () => {
     navigate("/");
   };
   const handleSubmit = (values: FormValues) => {
+    console.log('values', values);
+    //event.preventDefault();
+    /*
     const newBooking: Booking = {
       id: uuidv4(),
       startDate: userFilter?.startDate,
@@ -102,6 +103,7 @@ const Checkout: React.FC = () => {
       },
     };
     handleNewBooking(newBooking);
+    */
   };
 
   return (

@@ -19,7 +19,7 @@ export const CheckoutStyledForm = styled(Form)`
     flex-direction: column;
     gap: 10px;
 `;
-export const PriceContainer = styled(Form)`
+export const PriceContainer = styled.div`
     display: flex;
     flex: 1;
     width: 100%;
