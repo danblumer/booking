@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import { CardContainer, CardFooter, CardContent, CardPriceContent, CardReviewContent } from "./styled";
 import { Button } from "@mui/material";
 import { Hotel } from "../../types/Interfaces";
+import { formatCurrency } from "../../utils/numberUtils";
 
 type HotelCardProps = {
   hotelData: Hotel;
@@ -56,14 +57,14 @@ const HotelCard = ({
                 color="text.secondary"
                 component="div"
               >
-                from US$ {hotelData.price}
+                <b>Price:</b> {formatCurrency(hotelData.price)}
               </Typography>
               <Typography
                 variant="subtitle1"
                 color="text.secondary"
                 component="div"
               >
-                Total US$ {totalPrice}
+                <b>Total:</b> {formatCurrency(totalPrice)}
               </Typography>
               <Button
                 variant="outlined"

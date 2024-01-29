@@ -12,7 +12,10 @@ import {
 } from "@mui/material";
 import AlertDialog from "../components/dialog";
 import { Actions } from "../provider/actions";
-import { Container, DefaultPageContentContainer } from "../components/container/styled";
+import {
+  Container,
+  DefaultPageContentContainer,
+} from "../components/container/styled";
 import Header from "../components/header";
 
 const MyReservations: React.FC = () => {
@@ -22,8 +25,7 @@ const MyReservations: React.FC = () => {
   const [bookingIdToDelete, setBookingIdToDelete] = React.useState<
     string | undefined
   >(undefined);
-  const modalText =
-    "Are you sure you want to delete this booking?";
+  const modalText = "Are you sure you want to delete this booking?";
 
   const handleDeleteClick = (bookingId: string) => {
     setIsModalOpen(true);
@@ -35,63 +37,63 @@ const MyReservations: React.FC = () => {
     setBookingIdToDelete(undefined);
   };
   const handleModalOk = () => {
-    dispatch({ type: Actions.REMOVE_BOOKING, payload: bookingIdToDelete as string });
+    dispatch({
+      type: Actions.REMOVE_BOOKING,
+      payload: bookingIdToDelete as string,
+    });
     setIsModalOpen(false);
     setBookingIdToDelete(undefined);
   };
-  
-
-  if (!bookings || bookings.length === 0) {
-    return (
-      <div>
-        <h2>No bookings</h2>
-      </div>
-    );
-  }
 
   return (
     <Container>
       <Header />
       <h2>My Reservations</h2>
       <DefaultPageContentContainer>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Book Id</TableCell>
-                <TableCell>Start</TableCell>
-                <TableCell>End</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Price</TableCell>
-                <TableCell>Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {bookings.map((booking) => (
-                <TableRow key={booking.id}>
-                  <TableCell>{booking.id}</TableCell>
-                  <TableCell>{booking.startDate}</TableCell>
-                  <TableCell>{booking.endDate}</TableCell>
-                  <TableCell>{`${booking.user.name} ${booking.user.lastName}`}</TableCell>
-                  <TableCell>{booking.price}</TableCell>
-                  <TableCell>
-                    <Button
-                      size="small"
-                      variant="contained"
-                      color="primary"
-                      onClick={() => handleDeleteClick(booking.id)}
-                    >
-                      Delete
-                    </Button>
-                    <Button size="small" variant="contained" color="secondary">
-                      Update
-                    </Button>
-                  </TableCell>
+        {(bookings.length === 0 && <span>No bookings</span>) || (
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Book Id</TableCell>
+                  <TableCell>Start</TableCell>
+                  <TableCell>End</TableCell>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Price</TableCell>
+                  <TableCell>Actions</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {bookings.map((booking) => (
+                  <TableRow key={booking.id}>
+                    <TableCell>{booking.id}</TableCell>
+                    <TableCell>{booking.startDate}</TableCell>
+                    <TableCell>{booking.endDate}</TableCell>
+                    <TableCell>{`${booking.user.name} ${booking.user.lastName}`}</TableCell>
+                    <TableCell>{booking.price}</TableCell>
+                    <TableCell>
+                      <Button
+                        size="small"
+                        variant="contained"
+                        color="primary"
+                        onClick={() => handleDeleteClick(booking.id)}
+                      >
+                        Delete
+                      </Button>
+                      <Button
+                        size="small"
+                        variant="contained"
+                        color="secondary"
+                      >
+                        Update
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
       </DefaultPageContentContainer>
       <AlertDialog
         open={isModalOpen}

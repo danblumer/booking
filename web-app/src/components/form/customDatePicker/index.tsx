@@ -4,15 +4,30 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-export default function CustomDatePicker() {
-  const [value, setValue] = React.useState<Dayjs | null>(dayjs('2022-04-17'));
-  return (
+type CustomDatePickerProps = { 
+  onChange?: (date: Dayjs | null) => void;
+  value?: Dayjs | string | null;
+  label?: string;
+  name?: string;
+  [key: string]: unknown;
+};
+
+export default function CustomDatePicker({onChange, value, label, name, ...props} : CustomDatePickerProps) {
+    let localValue = null;
+    if (typeof value === 'string') {
+      localValue = dayjs(value);
+    }else if (dayjs.isDayjs(value)) {
+      localValue = dayjs(value);
+    }
+    return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
-          label="Controlled picker"
-          value={value}
-          onChange={(newValue) => setValue(newValue)}
-          slotProps={{ textField: { size: 'small', fullWidth: true } }}
+          name={name}
+          label={label}
+          value={localValue}
+          onChange={(newValue) => onChange && onChange(newValue)}
+          slotProps={{ textField: { size: 'small', fullWidth: true, ...props } }}
+          {...props}
         />
     </LocalizationProvider>
   );

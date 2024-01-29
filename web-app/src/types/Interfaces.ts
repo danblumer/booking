@@ -1,3 +1,5 @@
+import { Dayjs } from "dayjs";
+
 export interface Hotel {
     id: string
     name: string;
@@ -20,15 +22,14 @@ export interface UserInfo extends LoggedUser{
     address:string;
 }
 export interface UserFilter {
-    quantityPeople: number;
-    startDate: string;
-    endDate: string;
-    searchTerm: string
+    startDate?: Dayjs | null;
+    endDate?: Dayjs | null;
+    searchTerm?: string;
 }
 export interface Booking {
     id: string;
-    startDate: string;
-    endDate: string;
+    startDate?: Dayjs | null;
+    endDate?: Dayjs | null;
     user: UserInfo;
     price: number;
 }

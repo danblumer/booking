@@ -35,6 +35,8 @@ const bookingReducer = (
       return { ...state, availableHotels: action.payload };
     case Actions.SET_SELECTED_HOTEL:
       return { ...state, selectedHotel: action.payload };
+    case Actions.SET_USER_FILTER:
+      return { ...state, userFilter: action.payload };
     default:
       return state;
   }

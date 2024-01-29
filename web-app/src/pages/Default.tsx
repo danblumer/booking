@@ -2,7 +2,7 @@ import Header from "../components/header";
 import SearchBar from "../components/searchBar";
 import { useBookingContext } from "../provider/BookingContextProvider";
 import HotelCard from "../components/hotelCard";
-import { calculateTotalStay } from "../services/hotelServices";
+import { calculateTotalStayPrice } from "../services/hotelServices";
 import { Actions } from "../provider/actions";
 import { Hotel } from "../types/Interfaces";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +33,7 @@ const DefaultPage = () => {
           <HotelCard
             key={item.id}
             hotelData={item}
-            totalPrice={calculateTotalStay(item.price, 2)}
+            totalPrice={calculateTotalStayPrice(item.price, 2)}
             handleSelectHotel={handleSelectHotel}
           />
         ))}

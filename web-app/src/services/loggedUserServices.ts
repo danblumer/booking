@@ -5,6 +5,6 @@ export const getLoggedUser = () :LoggedUser => {
         id: '1',
         name: 'John',
         lastName: 'Doe',
-        email: ''
+        email: 'johndoe@gmail.com'
     } as LoggedUser;
 };

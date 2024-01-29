@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DefaultPage from "./pages/Default";
-import Checkout from "./pages/Checkout";
+import Checkout from "./pages/Checkout/index";
 import MyReservations from "./pages/MyReservations";
 
 export default function AppRoutes() {
