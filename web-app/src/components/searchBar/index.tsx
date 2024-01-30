@@ -2,16 +2,13 @@ import React from "react";
 import { StyledGrid } from "./styled";
 import Grid from "@mui/material/Grid";
 import { Button, TextField } from "@mui/material";
-//import { ReactComponent as ColumnsFilterIcon } from 'assets/svg/columns-filter.svg';
 import Logo from "../../assets/svg/ico-search.svg?react";
-//import { useNavigate } from "react-router-dom";
 import { useBookingContext } from "../../provider/BookingContextProvider";
 import CustomDatePicker from "../form/customDatePicker";
 import { Actions } from "../../provider/actions";
-import dayjs, { Dayjs } from "dayjs";
+import { Dayjs } from "dayjs";
 
 const SearchBar: React.FC = () => {
-  //const navigate = useNavigate();
   const { state, dispatch } = useBookingContext();
   const handleHotelNameChanged = (value: string) => {
     dispatch({
@@ -26,7 +23,7 @@ const SearchBar: React.FC = () => {
     });
   };
   const handleEndDateChanged = (value: Dayjs | null) => {
-    console.log('é depois mainha', dayjs(value).diff(state.userFilter?.startDate, 'day'));
+
     dispatch({
       type: Actions.SET_USER_FILTER,
       payload: { ...state.userFilter, endDate: value },

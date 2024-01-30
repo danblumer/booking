@@ -1,5 +1,5 @@
 import React from "react";
-import { useBookingContext } from "../provider/BookingContextProvider";
+import { useBookingContext } from "../../provider/BookingContextProvider";
 import {
   Table,
   TableBody,
@@ -9,14 +9,18 @@ import {
   TableRow,
   Paper,
   Button,
+  Typography,
 } from "@mui/material";
-import AlertDialog from "../components/dialog";
-import { Actions } from "../provider/actions";
+import AlertDialog from "../../components/dialog";
+import { Actions } from "../../provider/actions";
 import {
   Container,
   DefaultPageContentContainer,
-} from "../components/container/styled";
-import Header from "../components/header";
+} from "../../components/container/styled";
+import Header from "../../components/header";
+import dayjs from "dayjs";
+import { getHotelTotalPrice } from "../../services/hotelServices";
+import { NoDataFoundContainer } from "./styled";
 
 const MyReservations: React.FC = () => {
   const { state, dispatch } = useBookingContext();
@@ -48,9 +52,17 @@ const MyReservations: React.FC = () => {
   return (
     <Container>
       <Header />
-      <h2>My Reservations</h2>
+      <Typography component="div" variant="h6">
+        My Reservations
+      </Typography>
       <DefaultPageContentContainer>
-        {(bookings.length === 0 && <span>No bookings</span>) || (
+        {(bookings.length === 0 && (
+          <NoDataFoundContainer>
+            <Typography component="div" variant="h6">
+              No bookings found
+            </Typography>
+          </NoDataFoundContainer>
+        )) || (
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
@@ -67,10 +79,20 @@ const MyReservations: React.FC = () => {
                 {bookings.map((booking) => (
                   <TableRow key={booking.id}>
                     <TableCell>{booking.id}</TableCell>
-                    <TableCell>{booking.startDate}</TableCell>
-                    <TableCell>{booking.endDate}</TableCell>
+                    <TableCell>
+                      {dayjs(booking.startDate).format("MM/DD/YYYY")}
+                    </TableCell>
+                    <TableCell>
+                      {dayjs(booking.endDate).format("MM/DD/YYYY")}
+                    </TableCell>
                     <TableCell>{`${booking.user.name} ${booking.user.lastName}`}</TableCell>
-                    <TableCell>{booking.price}</TableCell>
+                    <TableCell>
+                      {getHotelTotalPrice(
+                        booking?.startDate,
+                        booking?.endDate,
+                        booking.price
+                      )}
+                    </TableCell>
                     <TableCell>
                       <Button
                         size="small"

@@ -21,7 +21,15 @@ const themeUITheme = {
 };
 
 function App() {
-  const materialTheme = materialCreateTheme();
+  const materialTheme = materialCreateTheme({
+    typography: {
+      fontFamily: [
+        'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+      ].join(','),
+      fontSize: 12,
+    },
+  });
+
   return (
     <ThemeUIProvider theme={themeUITheme}>
       <MaterialThemeProvider theme={{ [THEME_ID]: materialTheme }}>

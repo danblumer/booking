@@ -36,11 +36,24 @@ const HotelCard = ({
             color="text.secondary"
             component="div"
           >
-            {hotelData.country} / {hotelData.city}
+            <b>{hotelData.country} / {hotelData.city}</b>
           </Typography>
-          {hotelData.amenities.map((amenity) => (
-            <div>{amenity}</div>
-          ))}
+              <Typography
+                variant="subtitle1"
+                color="text.secondary"
+                component="div"
+              >
+                <b>Facilities</b>
+              </Typography>
+          
+            {hotelData.facilities.map((item) => (
+              <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              component="div"
+            > <b>- {item}</b></Typography>
+            ))}
+          
           <CardFooter>
             <CardReviewContent>
               <Typography
@@ -48,7 +61,14 @@ const HotelCard = ({
                 color="text.secondary"
                 component="div"
               >
-                {hotelData.rating} - {hotelData.reviewCount} reviews
+                {hotelData.rating} stars
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                color="text.secondary"
+                component="div"
+              >
+                {hotelData.reviewCount} reviews
               </Typography>
             </CardReviewContent>
             <CardPriceContent>

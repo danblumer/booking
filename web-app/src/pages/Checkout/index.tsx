@@ -5,7 +5,7 @@ import {
   DefaultPageContentContainer,
 } from "../../components/container/styled";
 import Header from "../../components/header";
-import { Formik, Form } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 import { Button, Typography } from "@mui/material";
 import CustomFormikTextBox from "../../components/form/customFormikTextBox";
@@ -20,12 +20,10 @@ import {
   PriceContainer,
 } from "./styled";
 import dayjs from "dayjs";
-import CustomDatePicker from "../../components/form/customDatePicker";
 import CustomFormikDatePicker from "../../components/form/customFormikDatePicker";
 import { formatCurrency } from "../../utils/numberUtils";
 import {
   calculateTotalStay,
-  calculateTotalStayPrice,
   getHotelTotalPrice,
 } from "../../services/hotelServices";
 
@@ -40,7 +38,7 @@ type FormValues = {
 
 const Checkout: React.FC = () => {
   const { state, dispatch } = useBookingContext();
-  const { selectedHotel, userFilter, loggedUser } = state;
+  const { selectedHotel, loggedUser } = state;
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const bookSavedText =
     "Your room has been booked. You will receive an email with the details.";
@@ -53,12 +51,6 @@ const Checkout: React.FC = () => {
     email: Yup.string().email("Invalid email").required("Required"),
     startDate: Yup.string().required("Required"),
     endDate: Yup.string().required("Required"),
-    /*startDate: Yup.date()
-    .transform((value, originalValue) => {
-      return dayjs.isDayjs(dayjs(originalValue)) ? originalValue : new Date('') 
-    })
-    .required('Required'),
-    */
   });
 
   const validateForm = async (values: FormValues) => {
@@ -86,13 +78,10 @@ const Checkout: React.FC = () => {
     navigate("/");
   };
   const handleSubmit = (values: FormValues) => {
-    console.log('values', values);
-    //event.preventDefault();
-    /*
     const newBooking: Booking = {
       id: uuidv4(),
-      startDate: userFilter?.startDate,
-      endDate: userFilter?.endDate,
+      startDate: dayjs(values.startDate),
+      endDate: dayjs(values.endDate),
       price: selectedHotel?.price || 0,
       user: {
         id: loggedUser.id,
@@ -103,7 +92,6 @@ const Checkout: React.FC = () => {
       },
     };
     handleNewBooking(newBooking);
-    */
   };
 
   return (

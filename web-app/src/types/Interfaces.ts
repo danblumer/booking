@@ -7,7 +7,7 @@ export interface Hotel {
     country: string;
     city: string;
     availableDates: string[];
-    amenities: string[];
+    facilities: string[];
     price: number;
     rating: number;
     reviewCount: number;
@@ -28,8 +28,8 @@ export interface UserFilter {
 }
 export interface Booking {
     id: string;
-    startDate?: Dayjs | null;
-    endDate?: Dayjs | null;
+    startDate: Dayjs | null;
+    endDate: Dayjs | null;
     user: UserInfo;
     price: number;
 }

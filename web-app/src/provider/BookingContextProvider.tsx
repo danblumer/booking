@@ -9,7 +9,7 @@ import { getLoggedUser } from "../services/loggedUserServices";
 const initialState: BookingContextState = {
   bookings: [],
   userInfo: undefined,
-  availableHotels: [], // Updated: Initialize with an empty array
+  availableHotels: [], 
   loggedUser: getLoggedUser(),
 };
 
@@ -56,7 +56,6 @@ const BookingContextProvider: React.FC<{ children: ReactNode }> = ({
         console.error("Error fetching hotels:", error);
       }
     };
-
 
     fetchHotels();
   }, []);
