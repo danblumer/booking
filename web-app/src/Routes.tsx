@@ -10,6 +10,7 @@ export default function AppRoutes() {
         <Route path="/" element={<DefaultPage />} />
         <Route path="/mybooking" element={<MyReservations />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout/:bookid" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );

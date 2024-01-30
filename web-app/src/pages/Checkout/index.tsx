@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useBookingContext } from "../../provider/BookingContextProvider";
 import {
   Container,
   DefaultPageContentContainer,
 } from "../../components/container/styled";
 import Header from "../../components/header";
-import { Formik } from "formik";
+import { Formik, useFormikContext } from "formik";
 import * as Yup from "yup";
 import { Button, Typography } from "@mui/material";
 import CustomFormikTextBox from "../../components/form/customFormikTextBox";
-import { Booking } from "../../types/Interfaces";
+import { Booking, Hotel } from "../../types/Interfaces";
 import { Actions } from "../../provider/actions";
 import AlertDialog from "../../components/dialog";
 import { useNavigate } from "react-router-dom";
@@ -26,6 +26,7 @@ import {
   calculateTotalStay,
   getHotelTotalPrice,
 } from "../../services/hotelServices";
+import { useParams } from "react-router";
 
 type FormValues = {
   name: string;
@@ -36,13 +37,50 @@ type FormValues = {
   endDate: string;
 };
 
-const Checkout: React.FC = () => {
+const Checkout = () => {
   const { state, dispatch } = useBookingContext();
-  const { selectedHotel, loggedUser } = state;
+  const { selectedHotel, selectedBooking, loggedUser } = state;
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  
   const bookSavedText =
     "Your room has been booked. You will receive an email with the details.";
+  const hotelData = selectedHotel || selectedBooking?.hotel;
   const navigate = useNavigate();
+  const { bookid } = useParams();
+  const editMode = Boolean(bookid);
+  
+
+  const getInitialValues = () => {
+    const bookingFound = state.bookings.find((b) => b.id === bookid);
+    let initialValues: FormValues = {
+      name: "",
+      lastName: "",
+      address: "",
+      email: "",
+      startDate: state.userFilter?.startDate
+        ? dayjs(state.userFilter?.startDate).format("MM/DD/YYYY")
+        : "",
+      endDate: state.userFilter?.endDate
+        ? dayjs(state.userFilter?.endDate).format("MM/DD/YYYY")
+        : "",
+    };
+    if(bookingFound){
+      initialValues = {
+        name: bookingFound?.user.name || "",
+        lastName: bookingFound?.user.lastName || "",
+        address: bookingFound?.user.address || "",
+        email: bookingFound?.user.email || "",
+        startDate: bookingFound?.startDate
+          ? dayjs(bookingFound?.startDate).format("MM/DD/YYYY")
+          : "",
+        endDate: bookingFound?.endDate
+          ? dayjs(bookingFound?.endDate).format("MM/DD/YYYY")
+          : "",
+      }
+    }
+
+    return initialValues;
+  };
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Required"),
@@ -67,6 +105,10 @@ const Checkout: React.FC = () => {
     dispatch({ type: Actions.ADD_BOOKING, payload: booking });
     setIsModalOpen(true);
   };
+  const handleUpdateBooking = (booking: Booking) => {
+    dispatch({ type: Actions.UPDATE_BOOKING, payload: booking });
+    setIsModalOpen(true);
+  };
   const handleModalClose = () => {
     closeModalAndRedirect();
   };
@@ -78,11 +120,11 @@ const Checkout: React.FC = () => {
     navigate("/");
   };
   const handleSubmit = (values: FormValues) => {
-    const newBooking: Booking = {
+    const bookingData: Booking = {
       id: uuidv4(),
       startDate: dayjs(values.startDate),
       endDate: dayjs(values.endDate),
-      price: selectedHotel?.price || 0,
+      price: hotelData?.price || 0,
       user: {
         id: loggedUser.id,
         name: values.name,
@@ -90,32 +132,41 @@ const Checkout: React.FC = () => {
         email: values.email,
         address: values.address,
       },
+      hotel: hotelData as Hotel,
     };
-    handleNewBooking(newBooking);
+    if(editMode){
+      bookingData.id = bookid as string;
+      handleUpdateBooking(bookingData);
+    }
+    else{
+      handleNewBooking(bookingData);
+    }
   };
 
   return (
     <Container>
       <Header />
       <DefaultPageContentContainer>
-        {(selectedHotel && (
+        {(hotelData && (
           <>
             <Typography component="div" variant="h6">
               Hotel Checkout, please fill the fields bellow
             </Typography>
+            {editMode && (
+              <Typography
+                variant="subtitle1"
+                color="text.secondary"
+                component="span"
+              >
+                <b>Edit your reservation here</b>
+              </Typography>
+            )}
             <CheckoutFormContainer>
               <Typography component="div" variant="h6">
-                {selectedHotel.name}
+                {hotelData.name}
               </Typography>
               <Formik
-                initialValues={{
-                  name: "",
-                  lastName: "",
-                  address: "",
-                  email: "",
-                  startDate: "",
-                  endDate: "",
-                }}
+                initialValues={getInitialValues()}
                 validationSchema={validationSchema}
                 validate={validateForm}
                 onSubmit={(values) => {
@@ -124,8 +175,8 @@ const Checkout: React.FC = () => {
               >
                 {({ handleSubmit, values }) => (
                   <CheckoutStyledForm onSubmit={handleSubmit}>
-                    <CustomFormikTextBox label="Name" name="name" />
-                    <CustomFormikTextBox label="Last Name" name="lastName" />
+                    <CustomFormikTextBox label="Guest Name" name="name" />
+                    <CustomFormikTextBox label="Guest Last Name" name="lastName" />
                     <CustomFormikTextBox label="E-Mail" name="email" />
                     <CustomFormikTextBox label="Address" name="address" />
                     <CustomFormikDatePicker
@@ -139,8 +190,7 @@ const Checkout: React.FC = () => {
                         color="text.secondary"
                         component="span"
                       >
-                        <b>Hotel Price</b> :{" "}
-                        {formatCurrency(selectedHotel.price)}
+                        <b>Hotel Price</b> : {formatCurrency(hotelData.price)}
                       </Typography>
                       <Typography
                         variant="subtitle1"
@@ -160,7 +210,7 @@ const Checkout: React.FC = () => {
                         {getHotelTotalPrice(
                           values.startDate,
                           values.endDate,
-                          selectedHotel.price
+                          hotelData.price
                         )}
                       </Typography>
                       <div>

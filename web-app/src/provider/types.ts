@@ -8,6 +8,7 @@ export interface BookingContextState {
     userInfo?: UserInfo;
     availableHotels: Hotel[];
     selectedHotel?: Hotel;
+    selectedBooking?: Booking;
     userFilter?: UserFilter;
     loggedUser: LoggedUser;
   }

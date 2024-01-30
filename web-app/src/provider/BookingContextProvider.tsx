@@ -5,12 +5,17 @@ import { BookingContextProps, BookingContextState } from "./types";
 import { Hotel } from "../types/Interfaces";
 import hotelsData from "../data/hotels.json";
 import { getLoggedUser } from "../services/loggedUserServices";
+import { getInitialFilterDataRange } from "../services/hotelServices";
 
 const initialState: BookingContextState = {
   bookings: [],
   userInfo: undefined,
-  availableHotels: [], 
+  availableHotels: [],
   loggedUser: getLoggedUser(),
+  userFilter:{
+    startDate: getInitialFilterDataRange()[0],
+    endDate: getInitialFilterDataRange()[1],
+  }
 };
 
 const BookingContext = createContext<BookingContextProps | undefined>(
@@ -31,10 +36,28 @@ const bookingReducer = (
           (booking) => booking.id !== action.payload
         ),
       };
+    case Actions.UPDATE_BOOKING:
+      return {
+        ...state,
+        bookings: state.bookings.map((booking) =>
+          booking.id === action.payload.id ? action.payload : booking
+        ),
+        //selectedBooking: undefined,
+      };
     case Actions.SET_ALL_AVAILABLE_HOTELS:
       return { ...state, availableHotels: action.payload };
     case Actions.SET_SELECTED_HOTEL:
-      return { ...state, selectedHotel: action.payload };
+      return {
+        ...state,
+        selectedHotel: action.payload,
+        //selectedBooking: undefined,
+      };
+    case Actions.SET_SELECTED_BOOKING:
+      return {
+        ...state,
+        selectedBooking: action.payload,
+        selectedHotel: undefined,
+      };
     case Actions.SET_USER_FILTER:
       return { ...state, userFilter: action.payload };
     default:

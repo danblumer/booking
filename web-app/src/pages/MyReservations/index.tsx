@@ -21,6 +21,7 @@ import Header from "../../components/header";
 import dayjs from "dayjs";
 import { getHotelTotalPrice } from "../../services/hotelServices";
 import { NoDataFoundContainer } from "./styled";
+import { useNavigate } from "react-router";
 
 const MyReservations: React.FC = () => {
   const { state, dispatch } = useBookingContext();
@@ -30,10 +31,22 @@ const MyReservations: React.FC = () => {
     string | undefined
   >(undefined);
   const modalText = "Are you sure you want to delete this booking?";
+  const navigate = useNavigate();
 
   const handleDeleteClick = (bookingId: string) => {
     setIsModalOpen(true);
     setBookingIdToDelete(bookingId);
+  };
+
+  const handleUpdateClick = (bookingId: string) => {
+    const bookingFound = state.bookings.find((b) => b.id === bookingId);
+      if (bookingFound) {
+        dispatch({
+          type: Actions.SET_SELECTED_BOOKING,
+          payload: bookingFound,
+        });
+      }
+    navigate(`/checkout/${bookingId}`);
   };
 
   const handleModalClose = () => {
@@ -67,10 +80,10 @@ const MyReservations: React.FC = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Book Id</TableCell>
+                  <TableCell>Name</TableCell>
                   <TableCell>Start</TableCell>
                   <TableCell>End</TableCell>
-                  <TableCell>Name</TableCell>
+                  <TableCell>Guest</TableCell>
                   <TableCell>Price</TableCell>
                   <TableCell>Actions</TableCell>
                 </TableRow>
@@ -78,7 +91,7 @@ const MyReservations: React.FC = () => {
               <TableBody>
                 {bookings.map((booking) => (
                   <TableRow key={booking.id}>
-                    <TableCell>{booking.id}</TableCell>
+                    <TableCell>{booking.hotel.name}</TableCell>
                     <TableCell>
                       {dayjs(booking.startDate).format("MM/DD/YYYY")}
                     </TableCell>
@@ -106,6 +119,7 @@ const MyReservations: React.FC = () => {
                         size="small"
                         variant="contained"
                         color="secondary"
+                        onClick={() => handleUpdateClick(booking.id)}
                       >
                         Update
                       </Button>

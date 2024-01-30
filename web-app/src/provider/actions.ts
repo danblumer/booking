@@ -8,6 +8,7 @@ export enum Actions {
     SET_ALL_AVAILABLE_HOTELS,
     SET_SELECTED_HOTEL,
     SET_USER_FILTER,
+    SET_SELECTED_BOOKING
 }
 export type Events =
   | { type: Actions.SET_USER_INFO; payload: UserInfo }
@@ -16,4 +17,5 @@ export type Events =
   | { type: Actions.REMOVE_BOOKING; payload: string }
   | { type: Actions.SET_ALL_AVAILABLE_HOTELS; payload: Hotel[] }
   | { type: Actions.SET_SELECTED_HOTEL; payload: Hotel | undefined }
+  | { type: Actions.SET_SELECTED_BOOKING; payload: Booking | undefined }
   | { type: Actions.SET_USER_FILTER; payload: UserFilter };

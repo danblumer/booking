@@ -7,9 +7,21 @@ import { useBookingContext } from "../../provider/BookingContextProvider";
 import CustomDatePicker from "../form/customDatePicker";
 import { Actions } from "../../provider/actions";
 import { Dayjs } from "dayjs";
+import { generateItems } from "../../data/dataUtils";
 
 const SearchBar: React.FC = () => {
   const { state, dispatch } = useBookingContext();
+  const handleSearchClick = () => {
+    const data = generateItems(
+      state.userFilter?.startDate as Dayjs,
+      state.userFilter?.endDate as Dayjs,
+      state.userFilter?.searchTerm || "Fake Name"
+    );
+    dispatch({
+      type: Actions.SET_ALL_AVAILABLE_HOTELS,
+      payload: data ,
+    });
+  };
   const handleHotelNameChanged = (value: string) => {
     dispatch({
       type: Actions.SET_USER_FILTER,
@@ -23,7 +35,6 @@ const SearchBar: React.FC = () => {
     });
   };
   const handleEndDateChanged = (value: Dayjs | null) => {
-
     dispatch({
       type: Actions.SET_USER_FILTER,
       payload: { ...state.userFilter, endDate: value },
@@ -49,7 +60,7 @@ const SearchBar: React.FC = () => {
         />
       </Grid>
       <Grid item xs={12} md={3}>
-      <CustomDatePicker
+        <CustomDatePicker
           label="End Date"
           onChange={(date) => handleEndDateChanged(date)}
           value={state.userFilter?.endDate || null}
@@ -59,7 +70,7 @@ const SearchBar: React.FC = () => {
         <Button
           variant="outlined"
           startIcon={<Logo />}
-          //onClick={() => handleClick()}
+          onClick={handleSearchClick}
           fullWidth
         >
           Search

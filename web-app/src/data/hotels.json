@@ -1,7 +1,7 @@
 [
     {
         "id": "1",
-        "facilities": ["facilities 1", "facilities 2"],
+        "facilities": ["facilities 1", "facilities 2", "facilities 3"],
         "name": "Caesars Palace Hotel & Casino",
         "country": "USA",
         "city": "Las vegas",
@@ -12,7 +12,7 @@
     },
     {
         "id": "2",
-        "facilities": ["facilities 1", "facilities 2"],
+        "facilities": ["facilities 1", "facilities 2", "facilities 3"],
         "name": "Bellagio Hotel & Casino",
         "country": "USA",
         "city": "Las vegas",

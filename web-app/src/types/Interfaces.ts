@@ -32,4 +32,5 @@ export interface Booking {
     endDate: Dayjs | null;
     user: UserInfo;
     price: number;
+    hotel: Hotel;
 }

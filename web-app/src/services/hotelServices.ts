@@ -14,3 +14,9 @@ export const getHotelTotalPrice = (startDate: Dayjs | string | null, endDate: Da
     const totalPrice = calculateTotalStayPrice(price, totalStay);
     return formatCurrency(totalPrice);
 }
+
+export const getInitialFilterDataRange = () : [Dayjs, Dayjs]=> {
+    const startDate = dayjs();
+    const endDate = dayjs().add(5, 'day');
+    return [startDate, endDate];
+}

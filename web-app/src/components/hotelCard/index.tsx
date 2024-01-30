@@ -9,13 +9,11 @@ import { formatCurrency } from "../../utils/numberUtils";
 
 type HotelCardProps = {
   hotelData: Hotel;
-  totalPrice: number;
   handleSelectHotel: (selectedHotel?: Hotel) => void;
 };
 
 const HotelCard = ({
   hotelData,
-  totalPrice,
   handleSelectHotel,
 }: HotelCardProps) => {
   return (
@@ -77,14 +75,7 @@ const HotelCard = ({
                 color="text.secondary"
                 component="div"
               >
-                <b>Price:</b> {formatCurrency(hotelData.price)}
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                color="text.secondary"
-                component="div"
-              >
-                <b>Total:</b> {formatCurrency(totalPrice)}
+                <b>Price: {formatCurrency(hotelData.price)}</b>
               </Typography>
               <Button
                 variant="outlined"
