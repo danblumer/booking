@@ -11,6 +11,7 @@ import { generateItems } from "../../data/dataUtils";
 
 const SearchBar: React.FC = () => {
   const { state, dispatch } = useBookingContext();
+  
   const handleSearchClick = () => {
     const data = generateItems(
       state.userFilter?.startDate as Dayjs,

@@ -5,7 +5,6 @@ import {
   getHotelTotalPrice,
   getInitialFilterDataRange,
 } from "../hotelServices";
-import '@testing-library/jest-dom'
 
 describe("calculateTotalStayPrice", () => {
   it("should calculate the total stay price correctly", () => {

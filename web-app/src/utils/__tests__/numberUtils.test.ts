@@ -1,5 +1,4 @@
 import { formatCurrency } from "../numberUtils";
-import '@testing-library/jest-dom'
 
 describe("formatCurrency", () => {
   it("should format the currency correctly", () => {

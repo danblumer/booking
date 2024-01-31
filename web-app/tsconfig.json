@@ -5,7 +5,7 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noImplicitThis": true,
     "strictNullChecks": true,
     
@@ -19,6 +19,8 @@
       "@emotion/react",
       "vite/client",
       "vite-plugin-svgr/client",
+      "jest",
+      "@testing-library/jest-dom"
     ],    
     "strict": true,
     "noUnusedLocals": true,
