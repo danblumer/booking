@@ -3,7 +3,8 @@
 ## Overview
 
 This is a simple hotel booking project web application built with React and TypeScript. It uses Jest as the testing framework and React Testing Library for component tests.
-
+The data here is mocked, so you can find the json file with the initial data in - `data/hotels.json`.
+In the search bar, you can play typing any hotel name, start date and end date, and after clicking on the search button, all the data will be regenerate ramdonbly by the `utils/numberUtils.ts`
 ## Directory Structure
 
 - `src/components`: This directory contains all the reusable components used across different pages of the application.
@@ -28,6 +29,8 @@ Currency values are formatted using the formatCurrency function in `src/utils/nu
 - We use Jest as our testing framework. You can run the tests with the following command:
 
 - Tests for components are located in the same directory as the component they are testing. For example, tests for src/components/MyComponent.tsx would be in src/components/MyComponent.test.tsx.
+
+#IMPORTANTE: Since this is a demo project, it only has some tests examples, not for all scenarios.
 
 ## Setup
 
