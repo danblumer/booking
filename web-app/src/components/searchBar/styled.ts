@@ -10,3 +10,15 @@ export const StyledGrid = styled(Grid)`
     padding-bottom: 15px;
     border-radius: 15px;
 `;
+
+export const ErrorMessageContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    width: 100%;
+    > label {
+        font-size: 14px;
+        color: #ff0000;
+        font-weight: 600;
+    }
+`;
