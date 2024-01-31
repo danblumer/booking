@@ -37,15 +37,15 @@ To set up the project, follow these steps:
 
  `git clone https://github.com/yourusername/yourrepository.git`
 
-3. Navigate to the project directory:
+2. Navigate to the project directory:
    
  `cd yourrepository`
 
-4. Install the dependencies:
+3. Install the dependencies:
    
  `npm install`
 
-6. Running the App
+4. Running the App
  `npm start`
 
 #Your application should be ready in the url http://localhost:5173/
