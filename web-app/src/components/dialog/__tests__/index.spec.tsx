@@ -20,24 +20,6 @@ describe("AlertDialog", () => {
     expect(screen.getByText(contentText)).toBeInTheDocument();
   });
 
-  /*test("calls handleClose when dialog is closed", () => {
-    const handleClose = jest.fn();
-
-    render(
-      <AlertDialog
-        open={true}
-        handleClose={handleClose}
-        handleOk={() => {}}
-        title=""
-        contentText=""
-      />
-    );
-
-    fireEvent.click(screen.getByRole("button", { name: "Close" }));
-
-    expect(handleClose).toHaveBeenCalled();
-  });*/
-
   test("calls handleOk when Ok button is clicked", () => {
     const handleOkMock = jest.fn();
 

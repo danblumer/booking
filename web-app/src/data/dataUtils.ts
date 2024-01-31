@@ -3,11 +3,13 @@ import { Hotel } from "../types/Interfaces";
 import { v4 as uuidv4 } from "uuid";
 
 
-export const generateItems = (startDate: Dayjs, endDate: Dayjs, hotelName?: string = 'Fake Name'): Hotel[] => {
+export const generateItems = (startDate: Dayjs, endDate: Dayjs, hotelName?: string): Hotel[] => {
     const items: Hotel[] = [];
     const diff = endDate.diff(startDate, "day");
     const days = diff <= 0 || diff > 15 ? 15 : diff;
 
+    hotelName = hotelName || 'Fake name';
+    
     for (let i = 1; i <= days; i++) {
         const item: Hotel = {
             id: uuidv4(),

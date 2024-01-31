@@ -44,8 +44,9 @@ const HotelCard = ({
                 <b>Facilities</b>
               </Typography>
           
-            {hotelData.facilities.map((item) => (
+            {hotelData.facilities.map((item, index) => (
               <Typography
+              key={`facility-${index}`}
               variant="subtitle1"
               color="text.secondary"
               component="div"

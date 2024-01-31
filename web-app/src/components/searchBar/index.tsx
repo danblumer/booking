@@ -73,6 +73,7 @@ const SearchBar: React.FC = () => {
           startIcon={<Logo />}
           onClick={handleSearchClick}
           fullWidth
+          data-testid="search-button"
         >
           Search
         </Button>

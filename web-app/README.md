@@ -1,30 +1,56 @@
-# React + TypeScript + Vite
+# Hotel Booking
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This is a simple hotel booking project web application built with React and TypeScript. It uses Jest as the testing framework and React Testing Library for component tests.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Directory Structure
 
-## Expanding the ESLint configuration
+- `src/components`: This directory contains all the reusable components used across different pages of the application.
+- `src/pages`: This directory contains all the page components. Each page component corresponds to a different route in the application.
+- `src/provider`: This directory contains the context providers for state management. The main state management is done in the `BookingContextProvider.tsx` file.
+- `src/utils`: This directory contains utility functions like `formatCurrency` in `numberUtils.ts`.
+- `src/services`: This directory contains business rules shared in the project.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## State Management
+State management is done using React's Context API. The main context provider is located in src/provider/BookingContextProvider.tsx.
 
-- Configure the top-level `parserOptions` property like this:
+## Components and Pages
+Components are located in the `src/components` directory. Each component has its own directory which contains the component file and its corresponding test file.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Pages are located in the `src/pages` directory. Each page corresponds to a different route in the application.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Currency Formatting
+Currency values are formatted using the formatCurrency function in src/utils/numberUtils.ts. This function formats a number as a string in USD currency format.
+
+## Testing
+
+- We use Jest as our testing framework. You can run the tests with the following command:
+
+- Tests for components are located in the same directory as the component they are testing. For example, tests for src/components/MyComponent.tsx would be in src/components/MyComponent.test.tsx.
+
+## Setup
+
+To set up the project, follow these steps:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/yourrepository.git
+
+
+2. Navigate to the project directory:
+
+```bash
+cd yourrepository
+
+3. Install the dependencies:
+
+```bash
+npm install
+
+4. Running the App
+```bash
+npm start
+
+- Your application should be ready in the url http://localhost:5173/

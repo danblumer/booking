@@ -12,7 +12,7 @@ type CustomDatePickerProps = {
 };
 
 export default function CustomDatePicker({onChange, value, label, name, ...props} : CustomDatePickerProps) {
-    let localValue = null;
+    let localValue : Dayjs | null = null;
     if (typeof value === 'string') {
       localValue = dayjs(value);
     }else if (dayjs.isDayjs(value)) {
