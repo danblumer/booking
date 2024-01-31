@@ -34,16 +34,18 @@ Currency values are formatted using the formatCurrency function in `src/utils/nu
 To set up the project, follow these steps:
 
 1. Clone the repository:
-`git clone https://github.com/yourusername/yourrepository.git`
 
-2. Navigate to the project directory:
+ `git clone https://github.com/yourusername/yourrepository.git`
+
+3. Navigate to the project directory:
    
-`cd yourrepository`
+ `cd yourrepository`
 
 4. Install the dependencies:
-`npm install`
+   
+ `npm install`
 
-5. Running the App
-`npm start`
+6. Running the App
+ `npm start`
 
 #Your application should be ready in the url http://localhost:5173/
