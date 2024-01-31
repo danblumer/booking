@@ -34,23 +34,15 @@ Currency values are formatted using the formatCurrency function in src/utils/num
 To set up the project, follow these steps:
 
 1. Clone the repository:
-
-```bash
 git clone https://github.com/yourusername/yourrepository.git
 
-
 2. Navigate to the project directory:
-
-```bash
 cd yourrepository
 
 3. Install the dependencies:
-
-```bash
 npm install
 
 4. Running the App
-```bash
 npm start
 
 - Your application should be ready in the url http://localhost:5173/
