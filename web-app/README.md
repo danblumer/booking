@@ -21,7 +21,7 @@ Components are located in the `src/components` directory. Each component has its
 Pages are located in the `src/pages` directory. Each page corresponds to a different route in the application.
 
 ## Currency Formatting
-Currency values are formatted using the formatCurrency function in src/utils/numberUtils.ts. This function formats a number as a string in USD currency format.
+Currency values are formatted using the formatCurrency function in `src/utils/numberUtils.ts` This function formats a number as a string in USD currency format.
 
 ## Testing
 
@@ -34,15 +34,16 @@ Currency values are formatted using the formatCurrency function in src/utils/num
 To set up the project, follow these steps:
 
 1. Clone the repository:
-git clone https://github.com/yourusername/yourrepository.git
+`git clone https://github.com/yourusername/yourrepository.git`
 
 2. Navigate to the project directory:
-cd yourrepository
+   
+`cd yourrepository`
 
-3. Install the dependencies:
-npm install
+4. Install the dependencies:
+`npm install`
 
-4. Running the App
-npm start
+5. Running the App
+`npm start`
 
-- Your application should be ready in the url http://localhost:5173/
+#Your application should be ready in the url http://localhost:5173/
