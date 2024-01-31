@@ -1,0 +1,46 @@
+[
+    {
+        "id": "1",
+        "facilities": ["facilities 1", "facilities 2", "facilities 3"],
+        "name": "Caesars Palace Hotel & Casino",
+        "country": "USA",
+        "city": "Las vegas",
+        "price": 680.50,
+        "rating": 5,
+        "reviewCount": 8750,
+        "availableDates": ["2001-10-10","2001-10-11"]
+    },
+    {
+        "id": "2",
+        "facilities": ["facilities 1", "facilities 2", "facilities 3"],
+        "name": "Bellagio Hotel & Casino",
+        "country": "USA",
+        "city": "Las vegas",
+        "price": 720,
+        "rating": 4,
+        "reviewCount": 3568,
+        "availableDates": ["2001-10-10","2001-10-11"]
+    },
+    {
+        "id": "3",
+        "facilities": ["facilities 1", "facilities 2", "facilities 3"],
+        "name": "Aria Resort & Casino",
+        "country": "USA",
+        "city": "Las vegas",
+        "price": 800,
+        "rating": 5,
+        "reviewCount": 10000,
+        "availableDates": ["2001-10-10","2001-10-11"]
+    },
+    {
+        "id": "4",
+        "facilities": ["facilities 1", "facilities 2", "facilities 3"],
+        "name": "Flamingo Hotel & Casino",
+        "country": "USA",
+        "city": "Las vegas",
+        "price": 300,
+        "rating": 3,
+        "reviewCount": 8000,
+        "availableDates": ["2001-10-10","2001-10-11"]
+    }
+]
